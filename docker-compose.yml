@@ -1,0 +1,41 @@
+version: '3.5'
+
+services:
+  url-shortener:
+    container_name: url-shortener
+    build:
+      context: ./.docker
+      args:
+        UID: $U_ID
+    volumes:
+      - ./:/var/www/html
+    environment:
+      XDEBUG_CLIENT_HOST: host.docker.internal
+      XDEBUG_CLIENT_PORT: 9003
+      PHP_IDE_CONFIG: serverName=symfony-server
+    ports:
+      - '1000:80'
+    networks:
+      - url-shortener-network
+    depends_on:
+      - url-shortener-postgres
+
+  url-shortener-postgres:
+    container_name: url-shortener-postgres
+    image: postgres:16.1
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: url-shortener
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - url-shortener-postgres-data:/var/lib/mysql
+    networks:
+      - url-shortener-network
+
+networks:
+  url-shortener-network:
+
+volumes:
+  url-shortener-postgres-data:

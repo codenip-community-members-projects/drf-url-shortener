@@ -20,7 +20,7 @@ This repository contains the basic configuration to run Symfony applications wit
 - `make start` to build and start the containers (you can use your IDE find and replace option to do so)
 - SSH into the container with `make ssh`
 - Create a Symfony project using the CLI (e.g. `symfony new --no-git --dir project`). See `symfony`command info for more options
-- Move all the content in the `project` folder to the root of the repository (do not forget to move also `.env`file)
+- Move all the content in the `project` folder to the root of the repository (e.g `mv project/{*,.*} .` to move all files from command line)
 - Add the content of `.gitignore` file to the root one, it should look like this
 ```
 .idea
