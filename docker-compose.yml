@@ -36,6 +36,8 @@ services:
 
 networks:
   url-shortener-network:
+    name: url-shortener-network
+    external: true
 
 volumes:
   url-shortener-postgres-data:
