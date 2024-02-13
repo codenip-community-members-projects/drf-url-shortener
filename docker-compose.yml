@@ -6,7 +6,7 @@ services:
     build:
       context: ./.docker
       args:
-        UID: $U_ID
+        UID: ${U_ID:-1000}
     volumes:
       - ./:/var/www/html
     environment:
